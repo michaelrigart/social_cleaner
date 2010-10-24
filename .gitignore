@@ -1,0 +1,15 @@
+.DS_Store
+.idea
+._*
+.~*
+.bundle
+tmp/*
+log/*.log
+pkg
+*.gemspec
+*.gem
+media/*
+*.lock
+*.swp
+config.yml
+script.rb
