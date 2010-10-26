@@ -10,11 +10,11 @@ begin
     gem.rubyforge_project = "nowarning"
     gem.files = Dir["README","{lib}/**/*"]
 
-    gem.version = "0.0.1"
+    gem.version = "0.0.2"
     gem.author = "Michaël Rigart"
     gem.email = "michael@netronix.be"
     gem.homepage = "http://www.netronix.be"
-    gem.add_dependency "twitter"
+    gem.add_dependency "twitter", "0.9.12"
   end
   Jeweler::GemcutterTasks.new
 rescue

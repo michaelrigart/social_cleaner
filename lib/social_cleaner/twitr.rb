@@ -23,14 +23,24 @@ module SocialCleaner
             expire_before = Time.now - (delete_after_days * 60 * 60 * 24)
             expire_ids = []
  
-            puts "Expiring all Twitter updates prior to #{expire_before.to_s}."
+            $stderr.puts "Expiring all Twitter updates prior to #{expire_before.to_s}."
  
             # Iterate through timeline
             # The old tweet id's don't contain a timestamp. maybe implement this for later?
             timeline = client.user_timeline
             timeline.each do |status|
                 if Time.parse(status["created_at"]) < expire_before
-                    puts "Queueing delete status ID #{status["id"]} created at #{status["created_at"]}  (#{status["text"]})."
+                    $stderr.puts "Queueing tweet delete status ID #{status["id"]} created at #{status["created_at"]}  (#{status["text"]})."
+                    $stdout.puts "#{status["id"]}\t\t#{status["created_at"]}\t\t#{status["text"]}"
+                    expire_ids.push(status["id"])
+                end
+            end
+
+            retweets = client.retweeted_by_me
+            retweets.each do |retweet|
+                if Time.parse(status["created_at"]) < expire_before
+                    $stderr.puts "Queueing retweet delete status ID #{status["id"]} created at #{status["created_at"]}  (#{status["text"]})."
+                    $stdout.puts "#{status["id"]}\t\t#{status["created_at"]}\t\t#{status["text"]}"
                     expire_ids.push(status["id"])
                 end
             end
@@ -39,12 +49,12 @@ module SocialCleaner
             # the list to be deleted.
             expire_ids.sort!
  
-            puts "Deleting #{expire_ids.length} tweets."
+            $stderr.puts "Deleting #{expire_ids.length} tweets."
      
             # Now let's delete the stuff
             # Note: the delete method is not rate limited.
             expire_ids.each do |delete_status|
-              puts "Deleting #{delete_status}..."
+              $stderr.puts "Deleting #{delete_status}..."
               client.status_destroy(delete_status)
             end
         end
