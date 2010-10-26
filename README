@@ -14,7 +14,7 @@ require 'rubygems'
 gem 'social_cleaner'
 require 'social_cleaner'
 
-cleaner = SocialCleaner::Twitr.new(consumer_token, consumer_secret, access_token, access_secret, delete_after_days)
+cleaner = SocialCleaner::Twitr.new("consumer_token", "consumer_secret", "access_token", "access_secret", delete_after_days)
 cleaner.delete_messages
 
 
