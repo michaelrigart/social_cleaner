@@ -1,12 +1,12 @@
 .DS_Store
 .idea
+*.iml
 ._*
 .~*
 .bundle
 tmp/*
 log/*.log
 pkg
-*.gemspec
 *.gem
 media/*
 *.lock
