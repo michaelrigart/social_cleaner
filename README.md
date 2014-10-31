@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/michaelrigart/social_cleaner.png)](https://codeclimate.com/github/michaelrigart/social_cleaner)
+
 README (draft)
 ======
 
